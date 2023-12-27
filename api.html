@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="api.js"></script>
+</head>
+
+<body>
+    <!-- Form Validity -->
+    <input id="password" type="number" min="10" max="20" required>
+    <button id="ok" onclick="checkpassword()">OK?</button>
+    <p id="message"></p>
+    <script>
+        function checkpassword() {
+            const obj1 = document.getElementById("password");
+            if (obj1.validity.rangeOverflow) {
+                obj1.setCustomValidity("overflow");
+            } else if (obj1.validity.valid) {
+                obj1.setCustomValidity("valid");
+            }
+            else if (obj1.validity.rangeUnderflow) {
+                obj1.setCustomValidity("underflow");
+            }
+            if (!obj1.checkValidity()) {
+                document.getElementById("message").innerHTML = obj1.validationMessage;
+            }
+
+        }
+    </script>
+    <!-- Storage API -->
+    <button onclick="setitem()">Set name</button>
+    <button onclick="getitem()">Get item</button>
+    <h1 id="localstorage"></h1>
+    <script>
+        function setitem() {
+            localStorage.setItem("name", "Toriqul");
+        }
+        function getitem() {
+            var x = localStorage.getItem("name");
+            document.getElementById("localstorage").innerHTML = x;
+        }
+    </script>
+
+</body>
+
+</html>
